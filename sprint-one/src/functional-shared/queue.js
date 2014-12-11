@@ -29,4 +29,3 @@ queueMethods.size = function(){
   return results;
 };
 
-;
