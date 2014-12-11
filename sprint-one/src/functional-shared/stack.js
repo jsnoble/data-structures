@@ -1,11 +1,5 @@
-// var Stack = function() {
-//   // Hey! Rewrite in the new style. Your code will wind up looking very similar,
-//   // but try not not reference your old code in writing the new style.
-// };
-
 var Stack = function(){
   var queue = {counter: 0};
-  //queue.list = {1: "a", 2: "b"};
   queue.list = {};
   _.extend(queue, stackMethods);
   return queue;
@@ -14,23 +8,19 @@ var Stack = function(){
 var stackMethods = {};
 
 stackMethods.push = function(value){
-  var keyz = this.counter;
-
-  this.list[keyz] = value ;
+  var key = this.counter;
+  this.list[key] = value ;
   this.counter++;
 
 };
 stackMethods.pop = function(){
-  console.log("List: ", this.list); // var result = queue[counter];
   if(this.counter){
     this.counter--;
   }
-  var c = this.counter;
-  console.log(c);
-  var result = this.list[c];
+  var key = this.counter;
+  var result = this.list[key];
 
-  console.log("Result:", result);
-  delete  this.list[c];
+  delete  this.list[key];
   return result;
 };
 
