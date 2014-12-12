@@ -8,21 +8,14 @@ var Stack = function() {
 var stackMethods = {};
 
 stackMethods.push = function(value){
- var key =  this.top;
-  this.list[key] = value;
-  this.top++;
+  this.list[this.top++] = value;
 };
 
 stackMethods.pop = function(){
   if(this.top) {
-    this.top--;
-    var key = this.top;
-    var results = this.list[key];
-    delete this.list[key];
-
+    var results = this.list[--this.top];
+    delete this.list[this.top];
     return results;
-  } else{
-    return;
   }
 };
 

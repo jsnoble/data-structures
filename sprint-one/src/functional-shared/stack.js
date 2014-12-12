@@ -1,5 +1,6 @@
 var Stack = function(){
-  var queue = {counter: 0};
+  var queue = {};
+  queue.counter= 0;
   queue.list = {};
   _.extend(queue, stackMethods);
   return queue;
@@ -8,19 +9,15 @@ var Stack = function(){
 var stackMethods = {};
 
 stackMethods.push = function(value){
-  var key = this.counter;
-  this.list[key] = value ;
-  this.counter++;
-
+  this.list[this.counter++] = value ;
 };
+
 stackMethods.pop = function(){
-  if(this.counter){
+  if(this.size()){
     this.counter--;
   }
-  var key = this.counter;
-  var result = this.list[key];
-
-  delete  this.list[key];
+  var result = this.list[this.counter];
+  delete  this.list[this.counter];
   return result;
 };
 

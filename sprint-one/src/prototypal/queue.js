@@ -3,32 +3,24 @@ var Queue = function() {
   queue.list = {};
   queue.head = 0;
   queue.tail = 0;
-
   return queue;
 };
 
 var queueMethods = {};
 
 queueMethods.enqueue = function(value){
-  var key = this.tail;
-  this.list[key] = value;
-  this.tail++;
+  this.list[this.tail++] = value;
 };
 
 queueMethods.dequeue = function(){
-  if (this.head < this.tail){
-    var key = this.head;
-    var result = this.list[key];
-    delete this.list[key];
-    this.head++;
+  if (this.size()){
+    var result = this.list[this.head];
+    delete this.list[this.head++];
     return result;
-  } else {
-    return;
- }
+  }
 };
 
 queueMethods.size = function(){
-
   return this.tail - this.head;
 };
 

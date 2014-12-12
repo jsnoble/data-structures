@@ -1,5 +1,7 @@
 var Queue = function(){
-  var queue = {head: 0, tail:0};
+  var queue = {};
+  queue.head = 0;
+  queue.tail = 0;
   queue.list = {};
   _.extend(queue, queueMethods);
   return queue;
@@ -8,24 +10,20 @@ var Queue = function(){
 var queueMethods = {};
 
 queueMethods.enqueue = function(value){
-  var key= this.tail;
-  this.list[key] = value;
-  this.tail++;
-
+  this.list[this.tail++] = value;
 };
+
 queueMethods.dequeue = function(){
-  var key = this.head;
-  var results = this.list[key];
-  delete this.list[key];
-  this.head++;
-  return results;
+  var results = this.list[this.head];
+  if (this.size()) {
+    delete this.list[this.head];
+    this.head++;
+  }
+    return results;
+
 };
 
 queueMethods.size = function(){
-  var results = this.tail - this.head;
-  if(results < 0){
-    return 0;
-  }
-  return results;
+  return  this.tail - this.head;
 };
 

@@ -4,17 +4,13 @@ var Stack = function() {
 };
 
 Stack.prototype.push = function(value){
-  var key = this.top;
-  this.list[key] = value;
-  this.top++;
+  this.list[this.top++] = value;
 };
 
 Stack.prototype.pop = function(){
   if (this.top) {
-    this.top--;
-    var key = this.top;
-    var result = this.list[key];
-    delete this.list[key];
+    var result = this.list[--this.top];
+    delete this.list[this.top];
     return result;
   }
 };
