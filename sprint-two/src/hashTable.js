@@ -18,21 +18,21 @@ HashTable.prototype.insert = function(k, v){
 HashTable.prototype.retrieve = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
 
- if(this._storage.get(i).length > 1){
-   var results = this._storage.get(i);
+  if(this._storage.get(i).length > 1){
+    var results = this._storage.get(i);
 
-   for(var j = 0; j < results.length; j++) {
-     if(results[j][0] === k){
-       return results[j][1];
-     }
+    for(var j = 0; j < results.length; j++) {
+      if(results[j][0] === k){
+        return results[j][1];
+      }
     }
- }
+  }
   return this._storage.get(i)[0][1];
 };
 
 HashTable.prototype.remove = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
-    this._storage.set(i, []);
+  this._storage.set(i, []);
   this._storage.get(i).push([null,null]);
 
 };
