@@ -2,15 +2,16 @@ var LinkedList = function(){
   var list = {head: null, tail: null};
 
   list.addToTail = function(value){
-    var node = {value: value, next: null};
+    var node = {previous: null, value: value, next: null};
 
     if (list.tail === null){
       list.tail = node;
       list.head = list.tail;
     } else {
-      var temp = node;
-      list.tail.next = temp;
-      list.tail = temp;
+      node.previous =list.tail;
+      list.tail.next = node;
+      list.tail = node;
+
     }
   };
 
@@ -20,6 +21,21 @@ var LinkedList = function(){
     delete list.head;
     list.head = nextNode;
     return prevNode;
+  };
+
+  list.addToHead = function(value){
+    var node = {previous: null, value: value, next: null};
+    node.next  = list.head;
+    list.head = node;
+
+  };
+
+  list.removeTail = function(){
+    var value = list.tail.value;
+    var prevNode = list.tail.previous;
+    delete list.tail;
+    list.tail = prevNode;
+    return value;
   };
 
   list.contains = function(target){
